@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Board from './components/Board';
 import { calculateWinner } from './components/Helper';
+import History from './components/History';
 
 import './styles/root.scss';
 
@@ -33,14 +34,15 @@ const App = () => {
       ? `Winner is ${winner}`
       : `Next player is ${current.isXnext ? 'X' : 'O'}`;
 
+   const moveTo = move => {
+      setCurrentMove(move);
+   };
    return (
       <div className="app">
          <h1>TIC TAC TOE</h1>
          <h1>{message}</h1>
          <Board board={current.board} handleSquareClick={handleSquareClick} />
-         {history.map((move, index) => (
-            <li key={index}>{JSON.stringify(move, undefined, 3)}</li>
-         ))}
+         <History history={history} moveTo={moveTo} currentMove={currentMove} />
       </div>
    );
 };
