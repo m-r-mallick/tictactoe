@@ -2,13 +2,30 @@ import React from 'react';
 
 const StatusMessage = ({ winner, current }) => {
    return (
-      <h2>
-         {winner && `Winner is ${winner}`}
-         {!winner &&
-            current.board.includes(null) &&
-            `Next player is ${current.isXnext ? 'X' : 'O'}`}
-         {!winner && !current.board.includes(null) && `DRAW!`}
-      </h2>
+      <div className="status-message">
+         {winner && (
+            <>
+               Winner is{' '}
+               <span className={winner === 'X' ? 'text-green' : 'text-orange'}>
+                  {winner}
+               </span>{' '}
+            </>
+         )}
+         {!winner && current.board.includes(null) && (
+            <>
+               Next player is{' '}
+               <span className={current.isXnext ? 'text-green' : 'text-orange'}>
+                  {current.isXnext ? 'X' : 'O'}
+               </span>
+            </>
+         )}
+         {!winner && !current.board.includes(null) && (
+            <>
+               <span className="text-green">X</span> and{' '}
+               <span className="text-orange">O</span> tied!
+            </>
+         )}
+      </div>
    );
 };
 

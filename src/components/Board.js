@@ -7,11 +7,7 @@ const Board = props => {
          <Square
             value={props.board[position]}
             handleClick={() => props.handleSquareClick(position)}
-            colorFormat={{
-               backgroundColor: props.path.includes(position)
-                  ? 'gray'
-                  : 'white',
-            }}
+            isWinningSquare={props.path.includes(position)}
          />
       );
    };
